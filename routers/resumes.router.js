@@ -88,6 +88,10 @@ router.get("/resumes/:resumeId", async (req, res, next) => {
       }
     });
 
+    if (!resume) {
+      return res.status(404).json({ errorMessage: "이력서 조회에 실패하였습니다." });
+    }
+
     return res.status(200).json({ data: resume });
   } catch (error) {
     next(error);

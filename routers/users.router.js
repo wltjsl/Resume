@@ -18,11 +18,6 @@ router.post("/sign-up", async (req, res, next) => {
         email
       }
     });
-    const isExistUser = await prisma.users.findFirst({
-      where: {
-        userName
-      }
-    });
 
     if (!email) {
       return res.status(400).json({ message: "이메일이 입력되지 않았습니다." });
@@ -46,9 +41,6 @@ router.post("/sign-up", async (req, res, next) => {
 
     if (isExistEmail) {
       return res.status(409).json({ message: "이미 존재하는 이메일입니다." });
-    }
-    if (isExistUser) {
-      return res.status(409).json({ message: "이미 존재하는 이름입니다." });
     }
 
     // 사용자 비밀번호를 암호화합니다.
