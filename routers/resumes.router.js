@@ -35,6 +35,16 @@ router.post("/resumes", authMiddleware, async (req, res, next) => {
 
 /** 이력서 목록 조회 API **/
 router.get("/resumes", async (req, res, next) => {
+  const orderKey = req.query.orderKey ?? "resumeId";
+  const orderValue = req.query.orderValue ?? "desc";
+
+  if (!["resumeId", "status"].includes(orderKey)) {
+    return res.status(400).json({ errorMessage: "orderKey가 올바르지 않습니다." });
+  }
+  if (!["asc", "desc"].includes(orderValue.toLocaleLowerCase())) {
+    return res.status(400).json({ errorMessage: "orderValue가 올바르지 않습니다." });
+  }
+
   try {
     const resumes = await prisma.resumes.findMany({
       select: {
@@ -46,7 +56,7 @@ router.get("/resumes", async (req, res, next) => {
         createdAt: true
       },
       orderBy: {
-        createdAt: "desc" // 게시글을 최신순으로 정렬합니다.
+        [orderKey]: orderValue
       }
     });
 
