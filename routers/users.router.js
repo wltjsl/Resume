@@ -98,7 +98,8 @@ router.post("/sign-in", async (req, res, next) => {
       {
         userId: user.userId
       },
-      `${process.env.JWT_SECRET}`
+      `${process.env.JWT_SECRET}`,
+      { expiresIn: "12h" }
     );
 
     // authotization 쿠키에 Berer 토큰 형식으로 JWT를 저장합니다.

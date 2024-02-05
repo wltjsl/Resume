@@ -9,12 +9,19 @@ const router = express.Router();
 /** 이력서 생성 API **/
 router.post("/resumes", authMiddleware, async (req, res, next) => {
   try {
-    const { userId } = req.locals.user;
+    const user = res.locals.user;
     const { title, content } = req.body;
+
+    if (!title) {
+      return res.status(400).json({ errorMessage: "제목을 입력해주세요." });
+    }
+    if (!content) {
+      return res.status(400).json({ errorMessage: "자기소개를 입력해주세요." });
+    }
 
     const resume = await prisma.resumes.create({
       data: {
-        userId: +userId,
+        userName: user.userName,
         title,
         content
       }
