@@ -24,8 +24,8 @@ export default async function (req, res, next) {
       throw new Error("토큰 사용자가 존재하지 않습니다.");
     }
 
-    // req.locals.user에 사용자 정보를 저장합니다.
-    req.locals.user = user;
+    // 사용자 정보를 저장합니다.
+    res.locals.user = user;
 
     next();
   } catch (error) {

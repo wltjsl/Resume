@@ -98,12 +98,12 @@ router.post("/sign-in", async (req, res, next) => {
       {
         userId: user.userId
       },
-      `${process.env.MONGODB_DB_NAME}`
+      `${process.env.JWT_SECRET}`
     );
 
     // authotization 쿠키에 Berer 토큰 형식으로 JWT를 저장합니다.
     res.cookie("authorization", `Bearer ${token}`);
-    return res.status(200).json({ message: "로그인 성공" });
+    return res.status(200).json({ message: "로그인 성공", token });
   } catch (err) {
     next(err);
   }
@@ -112,7 +112,7 @@ router.post("/sign-in", async (req, res, next) => {
 /** 사용자 조회 API **/
 router.get("/users", authMiddleware, async (req, res, next) => {
   try {
-    const { userId } = req.locals.user;
+    const { userId } = res.locals.user;
 
     const user = await prisma.users.findFirst({
       where: { userId: +userId },
