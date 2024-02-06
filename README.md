@@ -4,9 +4,10 @@
 
 - DATABASE_URL
 - JWT_SECRET
+- API_URL
 
 # API 명세서 URL
-- 구글 Docs 공유 URL 추가
+- [Swagger URL 추가](http://3.34.99.27:3018/api-docs/)
 
 # ERD URL
 - [ERD 작성한 위치 URL 추가](https://drawsql.app/teams/resume-1/diagrams/resume)
