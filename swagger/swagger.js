@@ -20,6 +20,7 @@ const options = {
       "/api/sign-up": {
         post: {
           description: "회원가입 API",
+          tags: ["Users"],
           parameters: [
             {
               name: "body",
@@ -59,6 +60,7 @@ const options = {
       "/api/sign-in": {
         post: {
           description: "로그인 API",
+          tags: ["Users"],
           parameters: [
             {
               name: "body",
@@ -89,6 +91,7 @@ const options = {
       "/api/users": {
         get: {
           description: "내 정보 조회 API",
+          tags: ["Users"],
           responses: {
             200: {
               description: "OK"
@@ -102,6 +105,7 @@ const options = {
       "/api/resumes": {
         post: {
           description: "이력서 등록 API",
+          tags: ["Resumes"],
           parameters: [
             {
               name: "body",
@@ -133,6 +137,7 @@ const options = {
         },
         get: {
           description: "이력서 조회 API",
+          tags: ["Resumes"],
           parameters: [
             {
               name: "orderKey",
@@ -161,6 +166,7 @@ const options = {
       "/api/resumes/{resumeId}": {
         get: {
           description: "이력서 상세 조회 API",
+          tags: ["Resumes"],
           parameters: [
             {
               name: "resumeId",
@@ -180,6 +186,7 @@ const options = {
         },
         patch: {
           description: "이력서 수정 API",
+          tags: ["Resumes"],
           parameters: [
             {
               name: "resumeId",
@@ -223,6 +230,7 @@ const options = {
         },
         delete: {
           description: "이력서 삭제 API",
+          tags: ["Resumes"],
           parameters: [
             {
               name: "resumeId",
