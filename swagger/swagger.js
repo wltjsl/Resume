@@ -1,5 +1,8 @@
 import swaggerUi from "swagger-ui-express"; // swagger-ui와 익스프레스를 연결해줌
-import swaggerJsDoc from "swagger-jsdoc"; // swagger-ui를 표현해줌
+import swaggerJsDoc from "swagger-jsdoc";
+// swagger-ui를 표현해줌
+import dotenv from "dotenv";
+dotenv.config();
 
 const options = {
   swaggerDefinition: {
@@ -10,9 +13,8 @@ const options = {
       description: "이력서 API"
     },
     servers: [
-      {
-        url: "http://localhost:3018" // 요청 URL
-      }
+      { url: process.env.API_URL }, // 요청 URL
+      { url: "http://localhost:3018" } //local 환경 대비
     ],
     paths: {
       "/api/sign-up": {
